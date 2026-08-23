@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        My Profile — AI Loan Risk Predictor
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+</head>
+
+
+<body class="main-page">
+
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header class="navbar">
+
+        <div class="logo">
+            AI Loan Risk Predictor
+        </div>
+
+        <div class="nav-actions">
+
+            <!-- Theme Toggle -->
+            <button
+                id="theme-toggle"
+                class="theme-toggle"
+                aria-label="Toggle dark mode"
+            >
+
+                <svg
+                    id="theme-icon"
+                    class="theme-icon"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                >
+                    <path
+                        d="M21 12.79A9 9 0 1 1 11.21 3
+                        7 7 0 0 0 21 12.79Z"
+                        stroke="currentColor"
+                        stroke-width="1.8"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    />
+                </svg>
+
+            </button>
+
+
+            <!-- Guest Actions -->
+
+            <div id="guest-actions" class="hidden">
+
+                <a href="login.html" class="nav-link">
+                    Log in
+                </a>
+
+                <a href="register.html" class="nav-button">
+                    Register
+                </a>
+
+            </div>
+
+
+            <!-- User Actions -->
+
+            <div
+                id="user-actions"
+                class="user-menu"
+            >
+
+                <button
+                    id="profile-button"
+                    class="profile-button"
+                >
+
+                    <div
+                        class="profile-avatar"
+                        id="nav-avatar"
+                    >
+                        U
+                    </div>
+
+                    <span id="nav-username">
+                        User
+                    </span>
+
+                </button>
+
+
+                <div
+                    id="profile-dropdown"
+                    class="profile-dropdown hidden"
+                >
+
+                    <a href="profile.html">
+                        My Profile
+                    </a>
+
+                    <button id="logout-button">
+                        Log out
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main>
+
+
+        <div class="page-shell">
+
+
+            <!-- ================= TOP BAR ================= -->
+
+            <div class="top-bar">
+
+                <h1>
+                    My Profile
+                </h1>
+
+                <button
+                    class="btn-logout"
+                    id="logout-btn"
+                    type="button"
+                >
+                    Log out
+                </button>
+
+            </div>
+
+
+            <!-- ================= BANNER ================= -->
+
+            <div
+                id="banner"
+                class="banner error"
+            ></div>
+
+
+
+            <!-- ================= PROFILE CARD ================= -->
+
+            <div class="profile-card">
+
+
+                <!-- ================= PROFILE HEADER ================= -->
+
+                <div class="profile-header">
+
+                    <div
+                        class="avatar-circle"
+                        id="avatar-initial"
+                    >
+                        ?
+                    </div>
+
+
+                    <div>
+
+                        <div
+                            class="name"
+                            id="display-name"
+                        >
+                            Loading…
+                        </div>
+
+
+                        <div
+                            class="email"
+                            id="display-email"
+                        >
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ================= PROFILE FORM ================= -->
+
+                <form
+                    id="profile-form"
+                    novalidate
+                >
+
+
+                    <div class="profile-grid">
+
+
+                        <!-- ================= FULL NAME ================= -->
+
+                        <div class="form-group">
+
+                            <label for="full_name">
+                                Full Name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="full_name"
+                                disabled
+                            >
+
+                        </div>
+
+
+
+                        <!-- ================= EMAIL ================= -->
+
+                        <div class="form-group">
+
+                            <label for="email">
+                                Email
+                            </label>
+
+                            <input
+                                type="email"
+                                id="email"
+                                disabled
+                            >
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- ================= ACTIONS ================= -->
+
+                    <div class="profile-actions">
+
+
+                        <button
+                            type="button"
+                            class="btn-secondary"
+                            id="edit-btn"
+                        >
+                            Edit Profile
+                        </button>
+
+
+                        <button
+                            type="submit"
+                            class="btn-primary"
+                            id="save-btn"
+                            style="display: none;"
+                        >
+                            Save Changes
+                        </button>
+
+
+                    </div>
+
+
+                </form>
+
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="footer">
+
+        <p>
+            © 2026 AI Loan Risk Predictor
+        </p>
+
+    </footer>
+
+
+
+    <script src="js/config.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/profile.js"></script>
+
+</body>
+
+</html>

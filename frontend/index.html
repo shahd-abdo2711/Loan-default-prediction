@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Loan Risk Predictor</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="main-page">
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header class="navbar">
+
+        <div class="logo">
+            AI Loan Risk Predictor
+        </div>
+
+        <div class="nav-actions">
+
+            <!-- Theme Toggle -->
+            <button
+                id="theme-toggle"
+                class="theme-toggle"
+                aria-label="Toggle dark mode"
+            >
+
+                <svg
+                    id="theme-icon"
+                    class="theme-icon"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                >
+                    <path
+                        d="M21 12.79A9 9 0 1 1 11.21 3
+                        7 7 0 0 0 21 12.79Z"
+                        stroke="currentColor"
+                        stroke-width="1.8"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    />
+                </svg>
+
+            </button>
+
+
+            <!-- Guest Actions -->
+
+            <div id="guest-actions">
+
+                <a href="login.html" class="nav-link">
+                    Log in
+                </a>
+
+                <a href="register.html" class="nav-button">
+                    Register
+                </a>
+
+            </div>
+
+
+            <!-- User Actions -->
+
+            <div
+                id="user-actions"
+                class="user-menu hidden"
+            >
+
+                <button
+                    id="profile-button"
+                    class="profile-button"
+                >
+
+                    <div
+                        class="profile-avatar"
+                        id="nav-avatar"
+                    >
+                        U
+                    </div>
+
+                    <span id="nav-username">
+                        User
+                    </span>
+
+                </button>
+
+
+                <div
+                    id="profile-dropdown"
+                    class="profile-dropdown hidden"
+                >
+
+                    <a href="profile.html">
+                        My Profile
+                    </a>
+
+                    <button id="logout-button">
+                        Log out
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main>
+
+
+        <!-- ================= HERO ================= -->
+
+        <section class="hero-section">
+
+            <div class="hero-content">
+
+                 
+
+                <h1>
+
+                    Predict Your
+                    <span>Loan Risk</span>
+
+                </h1>
+
+                <p class="hero-description">
+
+                    Estimate the probability of loan default
+                    based on applicant, financial, property,
+                    and loan information.
+
+                </p>
+
+
+                <div class="hero-buttons">
+
+                    <a
+                        href="#loan-form"
+                        class="primary-button"
+                    >
+                        Check Loan Risk
+                    </a>
+
+                    <a
+                        href="#how-it-works"
+                        class="secondary-button"
+                    >
+                        How It Works
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= HERO CARD ================= -->
+
+            <div class="hero-card">
+
+                <div class="hero-card-header">
+
+                    <span class="status-dot"></span>
+
+                    AI Risk Prediction
+
+                </div>
+
+
+                <h3>
+
+                    Understand Your
+                    Loan Default Risk
+
+                </h3>
+
+
+                <div class="mini-project">
+
+                    <strong>
+                        Credit Score
+                    </strong>
+
+                    <span>
+                        680
+                    </span>
+
+                </div>
+
+
+                <div class="mini-project">
+
+                    <strong>
+                        Loan Amount
+                    </strong>
+
+                    <span>
+                        $25,000
+                    </span>
+
+                </div>
+
+
+                <div class="mini-project">
+
+                    <strong>
+                        Risk Probability
+                    </strong>
+
+                    <span>
+                        AI Prediction
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             LOAN FORM
+        ====================================================== -->
+
+        <section
+            id="loan-form"
+            class="form-section"
+        >
+
+            <div class="section-heading">
+
+                <p class="section-label">
+                     Loan Risk Assessment
+                </p>
+
+                <h2>
+                    Enter Your Loan Information
+                </h2>
+
+                <p>
+                    Provide the required information to
+                    estimate your loan default risk.
+                </p>
+
+            </div>
+
+
+
+            <div class="project-form-card">
+
+
+                <!-- =================================================
+                     APPLICANT INFORMATION
+                ================================================== -->
+
+                <div class="form-section-title">
+
+                    <h3>
+                        Applicant Information
+                    </h3>
+
+                    <p>
+                        Basic information about the loan applicant.
+                    </p>
+
+                </div>
+
+
+                <div class="form-grid">
+
+
+                    <!-- Age -->
+
+                    <div class="input-group">
+
+                        <label for="age">
+                            Age
+                        </label>
+
+                        <input
+                            type="number"
+                            id="age"
+                            placeholder="e.g. 35"
+                            min="18"
+                            max="100"
+                        >
+
+                    </div>
+
+
+                    <!-- Gender -->
+
+                    <div class="input-group">
+
+                        <label for="gender">
+                            Gender
+                        </label>
+
+                        <select id="gender">
+
+                            <option value="">
+                                Select Gender
+                            </option>
+
+                            <option value="Male">
+                                Male
+                            </option>
+
+                            <option value="Female">
+                                Female
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Income -->
+
+                    <div class="input-group">
+
+                        <label for="income">
+                            Annual Income
+                        </label>
+
+                        <input
+                            type="number"
+                            id="income"
+                            placeholder="e.g. 50000"
+                            min="0"
+                        >
+
+                    </div>
+
+
+                    <!-- Credit Score -->
+
+                    <div class="input-group">
+
+                        <label for="credit-score">
+                            Credit Score
+                        </label>
+
+                        <input
+                            type="number"
+                            id="credit-score"
+                            placeholder="e.g. 680"
+                            min="300"
+                            max="850"
+                        >
+
+                    </div>
+
+
+                    <!-- Credit Type -->
+
+                    <div class="input-group">
+
+                        <label for="credit-type">
+                            Credit Type
+                        </label>
+
+                        <select id="credit-type">
+
+                            <option value="">
+                                Select Credit Type
+                            </option>
+
+                            <option value="CIB">
+                                CIB
+                            </option>
+
+                            <option value="CRIF">
+                                CRIF
+                            </option>
+
+                            <option value="EXP">
+                                EXP
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     LOAN INFORMATION
+                ================================================== -->
+
+                <div class="form-section-title">
+
+                    <h3>
+                        Loan Information
+                    </h3>
+
+                    <p>
+                        Information about the requested loan.
+                    </p>
+
+                </div>
+
+
+                <div class="form-grid">
+
+
+                    <!-- Loan Amount -->
+
+                    <div class="input-group">
+
+                        <label for="loan-amount">
+                            Loan Amount
+                        </label>
+
+                        <input
+                            type="number"
+                            id="loan-amount"
+                            placeholder="e.g. 25000"
+                            min="0"
+                        >
+
+                    </div>
+
+
+                    <!-- Loan Type -->
+
+                    <div class="input-group">
+
+                        <label for="loan-type">
+                            Loan Type
+                        </label>
+
+                        <select id="loan-type">
+
+                            <option value="">
+                                Select Loan Type
+                            </option>
+
+                            <option value="Type 1">
+                                Type 1
+                            </option>
+
+                            <option value="Type 2">
+                                Type 2
+                            </option>
+
+                            <option value="Type 3">
+                                Type 3
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Loan Purpose -->
+
+                    <div class="input-group">
+
+                        <label for="loan-purpose">
+                            Loan Purpose
+                        </label>
+
+                        <select id="loan-purpose">
+
+                            <option value="">
+                                Select Loan Purpose
+                            </option>
+
+                            <option value="Home Purchase">
+                                Home Purchase
+                            </option>
+
+                            <option value="Home Improvement">
+                                Home Improvement
+                            </option>
+
+                            <option value="Refinance">
+                                Refinance
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Loan Term -->
+
+                    <div class="input-group">
+
+                        <label for="loan-term">
+                            Loan Term
+                        </label>
+
+                        <select id="loan-term">
+
+                            <option value="">
+                                Select Loan Term
+                            </option>
+
+                            <option value="12">
+                                12 Months
+                            </option>
+
+                            <option value="24">
+                                24 Months
+                            </option>
+
+                            <option value="36">
+                                36 Months
+                            </option>
+
+                            <option value="48">
+                                48 Months
+                            </option>
+
+                            <option value="60">
+                                60 Months
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Interest Rate -->
+
+                    <div class="input-group">
+
+                        <label for="interest-rate">
+                            Interest Rate (%)
+                        </label>
+
+                        <input
+                            type="number"
+                            id="interest-rate"
+                            placeholder="e.g. 8.5"
+                            step="0.01"
+                            min="0"
+                        >
+
+                    </div>
+
+
+                    <!-- Upfront Charges -->
+
+                    <div class="input-group">
+
+                        <label for="upfront-charges">
+                            Upfront Charges
+                        </label>
+
+                        <input
+                            type="number"
+                            id="upfront-charges"
+                            placeholder="e.g. 1000"
+                            min="0"
+                        >
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     FINANCIAL INFORMATION
+                ================================================== -->
+
+                <div class="form-section-title">
+
+                    <h3>
+                        Financial Information
+                    </h3>
+
+                    <p>
+                        Financial indicators used to assess loan risk.
+                    </p>
+
+                </div>
+
+
+                <div class="form-grid">
+
+
+                    <!-- Credit Worthiness -->
+
+                    <div class="input-group">
+
+                        <label for="credit-worthiness">
+                            Credit Worthiness
+                        </label>
+
+                        <select id="credit-worthiness">
+
+                            <option value="">
+                                Select Credit Worthiness
+                            </option>
+
+                            <option value="Excellent">
+                                Excellent
+                            </option>
+
+                            <option value="Good">
+                                Good
+                            </option>
+
+                            <option value="Fair">
+                                Fair
+                            </option>
+
+                            <option value="Poor">
+                                Poor
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- DTI -->
+
+                    <div class="input-group">
+
+                        <label for="dti">
+                            DTI Ratio (%)
+                        </label>
+
+                        <input
+                            type="number"
+                            id="dti"
+                            placeholder="e.g. 28"
+                            min="0"
+                            max="100"
+                            step="0.01"
+                        >
+
+                    </div>
+
+
+                    <!-- LTV -->
+
+                    <div class="input-group">
+
+                        <label for="ltv">
+                            LTV Ratio (%)
+                        </label>
+
+                        <input
+                            type="number"
+                            id="ltv"
+                            placeholder="e.g. 75"
+                            min="0"
+                            max="100"
+                            step="0.01"
+                        >
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     PROPERTY INFORMATION
+                ================================================== -->
+
+                <div class="form-section-title">
+
+                    <h3>
+                        Property Information
+                    </h3>
+
+                    <p>
+                        Information about the property associated
+                        with the loan.
+                    </p>
+
+                </div>
+
+
+                <div class="form-grid">
+
+
+                    <!-- Property Value -->
+
+                    <div class="input-group">
+
+                        <label for="property-value">
+                            Property Value
+                        </label>
+
+                        <input
+                            type="number"
+                            id="property-value"
+                            placeholder="e.g. 120000"
+                            min="0"
+                        >
+
+                    </div>
+
+
+                    <!-- Occupancy -->
+
+                    <div class="input-group">
+
+                        <label for="occupancy-type">
+                            Occupancy Type
+                        </label>
+
+                        <select id="occupancy-type">
+
+                            <option value="">
+                                Select Occupancy
+                            </option>
+
+                            <option value="Owner Occupied">
+                                Owner Occupied
+                            </option>
+
+                            <option value="Investment">
+                                Investment
+                            </option>
+
+                            <option value="Second Home">
+                                Second Home
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Construction -->
+
+                    <div class="input-group">
+
+                        <label for="construction-type">
+                            Construction Type
+                        </label>
+
+                        <select id="construction-type">
+
+                            <option value="">
+                                Select Construction
+                            </option>
+
+                            <option value="Site Built">
+                                Site Built
+                            </option>
+
+                            <option value="Manufactured">
+                                Manufactured
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Total Units -->
+
+                    <div class="input-group">
+
+                        <label for="total-units">
+                            Total Units
+                        </label>
+
+                        <input
+                            type="number"
+                            id="total-units"
+                            placeholder="e.g. 1"
+                            min="1"
+                        >
+
+                    </div>
+
+
+                    <!-- Region -->
+
+                    <div class="input-group">
+
+                        <label for="region">
+                            Region
+                        </label>
+
+                        <select id="region">
+
+                            <option value="">
+                                Select Region
+                            </option>
+
+                            <option value="North-East">
+                                North-East
+                            </option>
+
+                            <option value="North-West">
+                                North-West
+                            </option>
+
+                            <option value="South-East">
+                                South-East
+                            </option>
+
+                            <option value="South-West">
+                                South-West
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     PREDICT BUTTON
+                ================================================== -->
+
+                <button
+                    id="predict-button"
+                    class="recommend-button"
+                    type="button"
+                >
+
+                    Predict Default Risk
+
+                </button>
+
+
+                <p
+                    id="prediction-error"
+                    class="prediction-error hidden"
+                ></p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             RESULT
+        ====================================================== -->
+
+        <section
+            id="prediction-result"
+            class="recommendations-section hidden"
+        >
+
+            <div class="section-heading">
+
+                <p class="section-label">
+                    AI Prediction
+                </p>
+
+                <h2>
+                    Your Loan Risk Result
+                </h2>
+
+            </div>
+
+
+            <div class="result-card">
+
+
+                <div class="result-header">
+
+                    <div>
+
+                        <p class="result-label">
+                            Default Risk
+                        </p>
+
+                        <h3 id="risk-level">
+                            High Risk
+                        </h3>
+
+                    </div>
+
+
+                    <div class="risk-badge" id="risk-badge">
+                        High Risk
+                    </div>
+
+                </div>
+
+
+                <div class="probability-box">
+
+                    <span id="risk-probability">
+                        72.4%
+                    </span>
+
+                    <p>
+                        Default Probability
+                    </p>
+
+                </div>
+
+
+                <div class="result-details">
+
+
+                    <div class="result-detail">
+
+                        <span>
+                            Age
+                        </span>
+
+                        <strong id="result-age">
+                            —
+                        </strong>
+
+                    </div>
+
+
+                    <div class="result-detail">
+
+                        <span>
+                            Credit Score
+                        </span>
+
+                        <strong id="result-credit-score">
+                            —
+                        </strong>
+
+                    </div>
+
+
+                    <div class="result-detail">
+
+                        <span>
+                            Loan Amount
+                        </span>
+
+                        <strong id="result-loan-amount">
+                            —
+                        </strong>
+
+                    </div>
+
+
+                    <div class="result-detail">
+
+                        <span>
+                            Interest Rate
+                        </span>
+
+                        <strong id="result-interest-rate">
+                            —
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="result-note">
+
+                    <p>
+                        This prediction is generated based on
+                        the information provided above.
+                    </p>
+
+                </div>
+
+
+                <button
+                    id="predict-again"
+                    class="recommend-button"
+                    type="button"
+                >
+
+                    Predict Again
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             HOW IT WORKS
+        ====================================================== -->
+
+        <section
+            id="how-it-works"
+            class="how-section"
+        >
+
+            <div class="section-heading">
+
+                <p class="section-label">
+                    How It Works
+                </p>
+
+                <h2>
+                    From Loan Data to Risk Prediction
+                </h2>
+
+            </div>
+
+
+            <div class="steps">
+
+
+                <!-- STEP 01 -->
+
+                <div class="step-card">
+
+                    <div class="step-number">
+                        01
+                    </div>
+
+                    <h3>
+                        Enter Loan Information
+                    </h3>
+
+                    <p>
+                        Provide applicant, financial,
+                        property, and loan details.
+                    </p>
+
+                </div>
+
+
+                <!-- STEP 02 -->
+
+                <div class="step-card">
+
+                    <div class="step-number">
+                        02
+                    </div>
+
+                    <h3>
+                        AI Model Analysis
+                    </h3>
+
+                    <p>
+                        The trained machine learning model
+                        analyzes the submitted features.
+                    </p>
+
+                </div>
+
+
+                <!-- STEP 03 -->
+
+                <div class="step-card">
+
+                    <div class="step-number">
+                        03
+                    </div>
+
+                    <h3>
+                        Get Risk Prediction
+                    </h3>
+
+                    <p>
+                        The system predicts the probability
+                        of loan default.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="footer">
+
+        <p>
+            © 2026 AI Loan Risk Predictor
+        </p>
+
+    </footer>
+
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script src="js/config.js"></script>
+    <script src="js/main.js"></script>
+
+</body>
+
+</html>
