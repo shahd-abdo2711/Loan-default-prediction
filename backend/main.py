@@ -7,7 +7,7 @@ from routers import auth, users, prediction
 
 Base.metadata.create_all(bind=engine)
 
-app = FastAPI(title="AI Project Idea Recommender API")
+app = FastAPI(title="Loan Default Prediction API")
 
 
 app.add_middleware(
@@ -25,4 +25,4 @@ app.include_router(prediction.router)
 
 @app.get("/")
 def root():
-    return {"message": "AI Project Idea Recommender API is running"}
+    return {"message": "Loan Default Prediction API is running"}
