@@ -1,0 +1,18 @@
+__pycache__/
+*.pyc
+
+# Virtual environments
+venv/
+.venv/
+
+# Python cache
+.pytest_cache/
+
+# Training datasets
+data/*.csv
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Environment files
+.env

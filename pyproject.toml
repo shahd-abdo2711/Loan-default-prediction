@@ -1,0 +1,20 @@
+[project]
+name = "loan-default-prediction"
+version = "0.1.0"
+description = "Loan Default Prediction API"
+requires-python = "==3.11.*"
+
+dependencies = [
+    "fastapi[standard]",
+    "sqlalchemy",
+    "pydantic[email]",
+    "python-jose[cryptography]",
+    "bcrypt",
+    "python-multipart",
+    "pandas",
+    "scikit-learn==1.6.1",
+    "joblib",
+]
+
+[tool.fastapi]
+entrypoint = "backend.main:app"
