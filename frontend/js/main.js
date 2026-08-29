@@ -326,6 +326,16 @@ document.addEventListener("DOMContentLoaded", () => {
             "click",
             async () => {
 
+                if (!token) {
+
+                    window.location.href =
+                        "register.html";
+
+                    return;
+
+                }
+
+
                 const data =
                     collectLoanData();
 
@@ -381,127 +391,113 @@ document.addEventListener("DOMContentLoaded", () => {
     // =====================================================
     // COLLECT FORM DATA
     // =====================================================
+    // Every key below is the exact raw column name the trained
+    // model's preprocessing pipeline expects. Dropdown values are
+    // already the raw category codes (see the <option value="...">
+    // attributes in index.html), so they are sent as-is with no
+    // relabeling needed here.
 
     function collectLoanData() {
 
         return {
 
+            // Applicant & credit
             age:
-                Number(
-                    document.getElementById(
-                        "age"
-                    ).value
-                ),
+                document.getElementById("age").value,
 
-            gender:
-                document.getElementById(
-                    "gender"
-                ).value,
+            Gender:
+                document.getElementById("Gender").value,
 
             income:
                 Number(
-                    document.getElementById(
-                        "income"
-                    ).value
+                    document.getElementById("income").value
                 ),
 
-            credit_score:
+            Credit_Score:
                 Number(
-                    document.getElementById(
-                        "credit-score"
-                    ).value
+                    document.getElementById("Credit_Score").value
                 ),
+
+            Credit_Worthiness:
+                document.getElementById("Credit_Worthiness").value,
 
             credit_type:
+                document.getElementById("credit_type").value,
+
+            "co-applicant_credit_type":
                 document.getElementById(
-                    "credit-type"
+                    "co-applicant_credit_type"
                 ).value,
 
+            // Loan details
             loan_amount:
                 Number(
-                    document.getElementById(
-                        "loan-amount"
-                    ).value
+                    document.getElementById("loan_amount").value
+                ),
+
+            term:
+                Number(
+                    document.getElementById("term").value
                 ),
 
             loan_type:
-                document.getElementById(
-                    "loan-type"
-                ).value,
+                document.getElementById("loan_type").value,
 
             loan_purpose:
+                document.getElementById("loan_purpose").value,
+
+            loan_limit:
+                document.getElementById("loan_limit").value,
+
+            approv_in_adv:
+                document.getElementById("approv_in_adv").value,
+
+            open_credit:
+                document.getElementById("open_credit").value,
+
+            business_or_commercial:
                 document.getElementById(
-                    "loan-purpose"
+                    "business_or_commercial"
                 ).value,
 
-            loan_term:
-                Number(
-                    document.getElementById(
-                        "loan-term"
-                    ).value
-                ),
-
-            interest_rate:
-                Number(
-                    document.getElementById(
-                        "interest-rate"
-                    ).value
-                ),
-
-            upfront_charges:
-                Number(
-                    document.getElementById(
-                        "upfront-charges"
-                    ).value
-                ),
-
-            credit_worthiness:
+            Neg_ammortization:
                 document.getElementById(
-                    "credit-worthiness"
+                    "Neg_ammortization"
                 ).value,
 
-            dti:
-                Number(
-                    document.getElementById(
-                        "dti"
-                    ).value
-                ),
+            interest_only:
+                document.getElementById("interest_only").value,
 
-            ltv:
-                Number(
-                    document.getElementById(
-                        "ltv"
-                    ).value
-                ),
-
-            property_value:
-                Number(
-                    document.getElementById(
-                        "property-value"
-                    ).value
-                ),
-
-            occupancy_type:
+            lump_sum_payment:
                 document.getElementById(
-                    "occupancy-type"
+                    "lump_sum_payment"
                 ).value,
 
+            submission_of_application:
+                document.getElementById(
+                    "submission_of_application"
+                ).value,
+
+            // Property details
             construction_type:
                 document.getElementById(
-                    "construction-type"
+                    "construction_type"
                 ).value,
 
-            total_units:
-                Number(
-                    document.getElementById(
-                        "total-units"
-                    ).value
-                ),
+            occupancy_type:
+                document.getElementById("occupancy_type").value,
 
-            region:
-                document.getElementById(
-                    "region"
-                ).value
+            Secured_by:
+                document.getElementById("Secured_by").value,
+
+            total_units:
+                document.getElementById("total_units").value,
+
+            Security_Type:
+                document.getElementById("Security_Type").value,
+
+            Region:
+                document.getElementById("Region").value
 
         };
 
@@ -518,101 +514,36 @@ document.addEventListener("DOMContentLoaded", () => {
         hidePredictionError();
 
 
-        if (!data.age) {
+        const requiredFields = [
 
-            showPredictionError(
-                "Please enter the applicant age."
-            );
+            { key: "age", message: "Please select the age group." },
+            { key: "Gender", message: "Please select the gender." },
+            { key: "income", message: "Please enter the annual income." },
+            { key: "Credit_Score", message: "Please enter the credit score." },
+            { key: "Credit_Worthiness", message: "Please select the credit worthiness." },
+            { key: "credit_type", message: "Please select the credit type." },
+            { key: "loan_amount", message: "Please enter the loan amount." },
+            { key: "term", message: "Please select the loan term." },
+            { key: "loan_type", message: "Please select the loan type." },
+            { key: "loan_purpose", message: "Please select the loan purpose." },
+            { key: "loan_limit", message: "Please select the loan limit." },
+            { key: "occupancy_type", message: "Please select the occupancy type." },
+            { key: "Region", message: "Please select the region." }
 
-            return false;
-
-        }
-
-
-        if (!data.gender) {
-
-            showPredictionError(
-                "Please select the gender."
-            );
-
-            return false;
-
-        }
+        ];
 
 
-        if (!data.income) {
+        for (const field of requiredFields) {
 
-            showPredictionError(
-                "Please enter the annual income."
-            );
+            const value = data[field.key];
 
-            return false;
+            if (value === "" || value === null || Number.isNaN(value)) {
 
-        }
+                showPredictionError(field.message);
 
+                return false;
 
-        if (!data.credit_score) {
-
-            showPredictionError(
-                "Please enter the credit score."
-            );
-
-            return false;
-
-        }
-
-
-        if (!data.loan_amount) {
-
-            showPredictionError(
-                "Please enter the loan amount."
-            );
-
-            return false;
-
-        }
-
-
-        if (!data.loan_type) {
-
-            showPredictionError(
-                "Please select the loan type."
-            );
-
-            return false;
-
-        }
-
-
-        if (!data.loan_purpose) {
-
-            showPredictionError(
-                "Please select the loan purpose."
-            );
-
-            return false;
-
-        }
-
-
-        if (!data.loan_term) {
-
-            showPredictionError(
-                "Please select the loan term."
-            );
-
-            return false;
-
-        }
-
-
-        if (!data.interest_rate) {
-
-            showPredictionError(
-                "Please enter the interest rate."
-            );
-
-            return false;
+            }
 
         }
 
@@ -637,50 +568,38 @@ document.addEventListener("DOMContentLoaded", () => {
 
         try {
 
-            /*
-             * =================================================
-             * FUTURE FASTAPI REQUEST
-             * =================================================
-             *
-             * When the ML model is ready,
-             * replace the temporary result below
-             * with:
-             *
-             * const response = await fetch(
-             *     `${API_BASE_URL}/predict`,
-             *     {
-             *         method: "POST",
-             *         headers: {
-             *             "Content-Type":
-             *                 "application/json",
-             *             Authorization:
-             *                 `Bearer ${token}`
-             *         },
-             *         body: JSON.stringify(data)
-             *     }
-             * );
-             *
-             */
-
-
-            // TEMPORARY DEMO RESULT
-
-            await new Promise(
-                resolve =>
-                    setTimeout(resolve, 800)
+            const response = await fetch(
+                `${API_BASE_URL}/predict`,
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+                    body: JSON.stringify(data)
+                }
             );
 
 
-            const result = {
+            if (!response.ok) {
 
-                risk:
-                    "High Risk",
+                const errorBody =
+                    await response
+                        .json()
+                        .catch(() => null);
 
-                probability:
-                    0.724
+                throw new Error(
+                    errorBody?.detail ||
+                    `Request failed (${response.status})`
+                );
 
-            };
+            }
 
+
+            const result =
+                await response.json();
+
+            // result shape from the backend: { risk: "High Risk" | "Low Risk", probability: 0.0-1.0 }
 
             displayPrediction(
                 data,
@@ -761,7 +680,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById(
             "result-credit-score"
         ).textContent =
-            data.credit_score;
+            data.Credit_Score;
 
 
         document.getElementById(
@@ -773,9 +692,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
         document.getElementById(
-            "result-interest-rate"
+            "result-region"
         ).textContent =
-            `${data.interest_rate}%`;
+            data.Region;
 
 
         predictionResult.classList.remove(

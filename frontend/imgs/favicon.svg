@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#1B2436"/>
+      <stop offset="100%" stop-color="#0E1420"/>
+    </linearGradient>
+  </defs>
+
+  <!-- background -->
+  <rect width="64" height="64" rx="14" fill="url(#bg)"/>
+
+  <!-- house silhouette (loan / property) -->
+  <path
+    d="M32 12 L50 26 V48 A2 2 0 0 1 48 50 H16 A2 2 0 0 1 14 48 V26 Z"
+    fill="none"
+    stroke="#F4F1EA"
+    stroke-width="3"
+    stroke-linejoin="round"
+    stroke-linecap="round"
+    opacity="0.9"
+  />
+
+  <!-- risk pulse line (prediction / analysis) -->
+  <path
+    d="M14 38 H21 L26 30 L31 42 L35 24 L39 38 H50"
+    fill="none"
+    stroke="#D97757"
+    stroke-width="3.4"
+    stroke-linejoin="round"
+    stroke-linecap="round"
+  />
+
+  <!-- pulse node -->
+  <circle cx="35" cy="24" r="3.2" fill="#D97757"/>
+</svg>

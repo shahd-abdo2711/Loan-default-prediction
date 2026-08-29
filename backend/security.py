@@ -1,16 +1,9 @@
-"""
-Security helpers: password hashing and JWT creation/verification.
-"""
-
 import os
 from datetime import datetime, timedelta, timezone
 
 import bcrypt
 from jose import JWTError, jwt
 
-# In a real deployment, set JWT_SECRET_KEY as an environment variable.
-# A fallback is provided here only so the project runs out of the box
-# for local development.
 SECRET_KEY = os.getenv("JWT_SECRET_KEY", "dev-only-secret-change-me")
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 60 * 24  # 1 day

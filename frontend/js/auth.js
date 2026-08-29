@@ -1,6 +1,4 @@
-// Handles the Register and Login forms.
-// Only one of these forms will exist on any given page.
-
+ 
 function showBanner(message) {
   const banner = document.getElementById("banner");
   banner.textContent = message;

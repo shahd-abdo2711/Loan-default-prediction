@@ -8,6 +8,9 @@
     <title>AI Loan Risk Predictor</title>
 
     <link rel="stylesheet" href="css/style.css">
+     
+    <link rel="icon" type="image/svg+xml" href="./imgs/favicon.svg">
+     
 </head>
 
 <body class="main-page">
@@ -122,8 +125,6 @@
 
             <div class="hero-content">
 
-                 
-
                 <h1>
 
                     Predict Your
@@ -134,8 +135,7 @@
                 <p class="hero-description">
 
                     Estimate the probability of loan default
-                    based on applicant, financial, property,
-                    and loan information.
+                    based on applicant, credit, and loan information.
 
                 </p>
 
@@ -228,6 +228,11 @@
 
         <!-- =====================================================
              LOAN FORM
+             All field ids below match the exact raw column names
+             the trained model's preprocessing pipeline expects.
+             All <option value="..."> use the exact category codes
+             seen during training (not user-friendly labels) so the
+             OneHotEncoder never receives an unseen category.
         ====================================================== -->
 
         <section
@@ -258,13 +263,13 @@
 
 
                 <!-- =================================================
-                     APPLICANT INFORMATION
+                     APPLICANT & CREDIT INFORMATION
                 ================================================== -->
 
                 <div class="form-section-title">
 
                     <h3>
-                        Applicant Information
+                        Applicant &amp; Credit Information
                     </h3>
 
                     <p>
@@ -277,37 +282,65 @@
                 <div class="form-grid">
 
 
-                    <!-- Age -->
+                    <!-- age (ordinal: <25, 25-34, 35-44, 45-54, 55-64, 65-74, >74) -->
 
                     <div class="input-group">
 
                         <label for="age">
-                            Age
+                            Age Group
                         </label>
 
-                        <input
-                            type="number"
-                            id="age"
-                            placeholder="e.g. 35"
-                            min="18"
-                            max="100"
-                        >
+                        <select id="age">
+
+                            <option value="">
+                                Select Age Group
+                            </option>
+
+                            <option value="&lt;25">
+                                Under 25
+                            </option>
+
+                            <option value="25-34">
+                                25 - 34
+                            </option>
+
+                            <option value="35-44">
+                                35 - 44
+                            </option>
+
+                            <option value="45-54">
+                                45 - 54
+                            </option>
+
+                            <option value="55-64">
+                                55 - 64
+                            </option>
+
+                            <option value="65-74">
+                                65 - 74
+                            </option>
+
+                            <option value="&gt;74">
+                                Over 74
+                            </option>
+
+                        </select>
 
                     </div>
 
 
-                    <!-- Gender -->
+                    <!-- Gender (Male / Female / Joint) -->
 
                     <div class="input-group">
 
-                        <label for="gender">
+                        <label for="Gender">
                             Gender
                         </label>
 
-                        <select id="gender">
+                        <select id="Gender">
 
                             <option value="">
-                                Select Gender
+                                Prefer not to say
                             </option>
 
                             <option value="Male">
@@ -318,12 +351,16 @@
                                 Female
                             </option>
 
+                            <option value="Joint">
+                                Joint Application
+                            </option>
+
                         </select>
 
                     </div>
 
 
-                    <!-- Income -->
+                    <!-- income (numeric) -->
 
                     <div class="input-group">
 
@@ -341,17 +378,17 @@
                     </div>
 
 
-                    <!-- Credit Score -->
+                    <!-- Credit_Score (numeric, 300-850) -->
 
                     <div class="input-group">
 
-                        <label for="credit-score">
+                        <label for="Credit_Score">
                             Credit Score
                         </label>
 
                         <input
                             type="number"
-                            id="credit-score"
+                            id="Credit_Score"
                             placeholder="e.g. 680"
                             min="300"
                             max="850"
@@ -360,15 +397,42 @@
                     </div>
 
 
-                    <!-- Credit Type -->
+                    <!-- Credit_Worthiness (l1 / l2 - only two levels in training data) -->
 
                     <div class="input-group">
 
-                        <label for="credit-type">
+                        <label for="Credit_Worthiness">
+                            Credit Worthiness
+                        </label>
+
+                        <select id="Credit_Worthiness">
+
+                            <option value="">
+                                Select Credit Worthiness
+                            </option>
+
+                            <option value="l1">
+                                Level 1
+                            </option>
+
+                            <option value="l2">
+                                Level 2
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- credit_type (EXP / EQUI / CRIF / CIB) -->
+
+                    <div class="input-group">
+
+                        <label for="credit_type">
                             Credit Type
                         </label>
 
-                        <select id="credit-type">
+                        <select id="credit_type">
 
                             <option value="">
                                 Select Credit Type
@@ -380,6 +444,37 @@
 
                             <option value="CRIF">
                                 CRIF
+                            </option>
+
+                            <option value="EXP">
+                                EXP
+                            </option>
+
+                            <option value="EQUI">
+                                EQUI
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- co-applicant_credit_type (CIB / EXP) -->
+
+                    <div class="input-group">
+
+                        <label for="co-applicant_credit_type">
+                            Co-Applicant Credit Type
+                        </label>
+
+                        <select id="co-applicant_credit_type">
+
+                            <option value="">
+                                Select Co-Applicant Credit Type
+                            </option>
+
+                            <option value="CIB">
+                                CIB
                             </option>
 
                             <option value="EXP">
@@ -414,17 +509,17 @@
                 <div class="form-grid">
 
 
-                    <!-- Loan Amount -->
+                    <!-- loan_amount (numeric) -->
 
                     <div class="input-group">
 
-                        <label for="loan-amount">
+                        <label for="loan_amount">
                             Loan Amount
                         </label>
 
                         <input
                             type="number"
-                            id="loan-amount"
+                            id="loan_amount"
                             placeholder="e.g. 25000"
                             min="0"
                         >
@@ -432,77 +527,15 @@
                     </div>
 
 
-                    <!-- Loan Type -->
+                    <!-- term (numeric, months) -->
 
                     <div class="input-group">
 
-                        <label for="loan-type">
-                            Loan Type
+                        <label for="term">
+                            Loan Term (Months)
                         </label>
 
-                        <select id="loan-type">
-
-                            <option value="">
-                                Select Loan Type
-                            </option>
-
-                            <option value="Type 1">
-                                Type 1
-                            </option>
-
-                            <option value="Type 2">
-                                Type 2
-                            </option>
-
-                            <option value="Type 3">
-                                Type 3
-                            </option>
-
-                        </select>
-
-                    </div>
-
-
-                    <!-- Loan Purpose -->
-
-                    <div class="input-group">
-
-                        <label for="loan-purpose">
-                            Loan Purpose
-                        </label>
-
-                        <select id="loan-purpose">
-
-                            <option value="">
-                                Select Loan Purpose
-                            </option>
-
-                            <option value="Home Purchase">
-                                Home Purchase
-                            </option>
-
-                            <option value="Home Improvement">
-                                Home Improvement
-                            </option>
-
-                            <option value="Refinance">
-                                Refinance
-                            </option>
-
-                        </select>
-
-                    </div>
-
-
-                    <!-- Loan Term -->
-
-                    <div class="input-group">
-
-                        <label for="loan-term">
-                            Loan Term
-                        </label>
-
-                        <select id="loan-term">
+                        <select id="term">
 
                             <option value="">
                                 Select Loan Term
@@ -520,12 +553,12 @@
                                 36 Months
                             </option>
 
-                            <option value="48">
-                                48 Months
+                            <option value="180">
+                                180 Months
                             </option>
 
-                            <option value="60">
-                                60 Months
+                            <option value="360">
+                                360 Months
                             </option>
 
                         </select>
@@ -533,94 +566,30 @@
                     </div>
 
 
-                    <!-- Interest Rate -->
+                    <!-- loan_type (type1 / type2 / type3) -->
 
                     <div class="input-group">
 
-                        <label for="interest-rate">
-                            Interest Rate (%)
+                        <label for="loan_type">
+                            Loan Type
                         </label>
 
-                        <input
-                            type="number"
-                            id="interest-rate"
-                            placeholder="e.g. 8.5"
-                            step="0.01"
-                            min="0"
-                        >
-
-                    </div>
-
-
-                    <!-- Upfront Charges -->
-
-                    <div class="input-group">
-
-                        <label for="upfront-charges">
-                            Upfront Charges
-                        </label>
-
-                        <input
-                            type="number"
-                            id="upfront-charges"
-                            placeholder="e.g. 1000"
-                            min="0"
-                        >
-
-                    </div>
-
-                </div>
-
-
-
-                <!-- =================================================
-                     FINANCIAL INFORMATION
-                ================================================== -->
-
-                <div class="form-section-title">
-
-                    <h3>
-                        Financial Information
-                    </h3>
-
-                    <p>
-                        Financial indicators used to assess loan risk.
-                    </p>
-
-                </div>
-
-
-                <div class="form-grid">
-
-
-                    <!-- Credit Worthiness -->
-
-                    <div class="input-group">
-
-                        <label for="credit-worthiness">
-                            Credit Worthiness
-                        </label>
-
-                        <select id="credit-worthiness">
+                        <select id="loan_type">
 
                             <option value="">
-                                Select Credit Worthiness
+                                Select Loan Type
                             </option>
 
-                            <option value="Excellent">
-                                Excellent
+                            <option value="type1">
+                                Type 1
                             </option>
 
-                            <option value="Good">
-                                Good
+                            <option value="type2">
+                                Type 2
                             </option>
 
-                            <option value="Fair">
-                                Fair
-                            </option>
-
-                            <option value="Poor">
-                                Poor
+                            <option value="type3">
+                                Type 3
                             </option>
 
                         </select>
@@ -628,42 +597,253 @@
                     </div>
 
 
-                    <!-- DTI -->
+                    <!-- loan_purpose (p1 / p2 / p3 / p4) -->
 
                     <div class="input-group">
 
-                        <label for="dti">
-                            DTI Ratio (%)
+                        <label for="loan_purpose">
+                            Loan Purpose
                         </label>
 
-                        <input
-                            type="number"
-                            id="dti"
-                            placeholder="e.g. 28"
-                            min="0"
-                            max="100"
-                            step="0.01"
-                        >
+                        <select id="loan_purpose">
+
+                            <option value="">
+                                Select Loan Purpose
+                            </option>
+
+                            <option value="p1">
+                                Purpose 1
+                            </option>
+
+                            <option value="p2">
+                                Purpose 2
+                            </option>
+
+                            <option value="p3">
+                                Purpose 3
+                            </option>
+
+                            <option value="p4">
+                                Purpose 4
+                            </option>
+
+                        </select>
 
                     </div>
 
 
-                    <!-- LTV -->
+                    <!-- loan_limit (cf / ncf) -->
 
                     <div class="input-group">
 
-                        <label for="ltv">
-                            LTV Ratio (%)
+                        <label for="loan_limit">
+                            Loan Limit
                         </label>
 
-                        <input
-                            type="number"
-                            id="ltv"
-                            placeholder="e.g. 75"
-                            min="0"
-                            max="100"
-                            step="0.01"
-                        >
+                        <select id="loan_limit">
+
+                            <option value="">
+                                Select Loan Limit
+                            </option>
+
+                            <option value="cf">
+                                Conforming
+                            </option>
+
+                            <option value="ncf">
+                                Non-Conforming
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- approv_in_adv (nopre / pre) -->
+
+                    <div class="input-group">
+
+                        <label for="approv_in_adv">
+                            Pre-Approved
+                        </label>
+
+                        <select id="approv_in_adv">
+
+                            <option value="">
+                                Select Pre-Approval Status
+                            </option>
+
+                            <option value="pre">
+                                Pre-Approved
+                            </option>
+
+                            <option value="nopre">
+                                Not Pre-Approved
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- open_credit (nopc / opc) -->
+
+                    <div class="input-group">
+
+                        <label for="open_credit">
+                            Open Credit
+                        </label>
+
+                        <select id="open_credit">
+
+                            <option value="">
+                                Select Open Credit
+                            </option>
+
+                            <option value="opc">
+                                Yes
+                            </option>
+
+                            <option value="nopc">
+                                No
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- business_or_commercial (nob/c / b/c) -->
+
+                    <div class="input-group">
+
+                        <label for="business_or_commercial">
+                            Business or Commercial
+                        </label>
+
+                        <select id="business_or_commercial">
+
+                            <option value="">
+                                Select an Option
+                            </option>
+
+                            <option value="b/c">
+                                Business / Commercial
+                            </option>
+
+                            <option value="nob/c">
+                                Not Business / Commercial
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Neg_ammortization (not_neg / neg_amm) -->
+
+                    <div class="input-group">
+
+                        <label for="Neg_ammortization">
+                            Negative Amortization
+                        </label>
+
+                        <select id="Neg_ammortization">
+
+                            <option value="">
+                                Select an Option
+                            </option>
+
+                            <option value="neg_amm">
+                                Yes
+                            </option>
+
+                            <option value="not_neg">
+                                No
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- interest_only (not_int / int_only) -->
+
+                    <div class="input-group">
+
+                        <label for="interest_only">
+                            Interest-Only Loan
+                        </label>
+
+                        <select id="interest_only">
+
+                            <option value="">
+                                Select an Option
+                            </option>
+
+                            <option value="int_only">
+                                Yes
+                            </option>
+
+                            <option value="not_int">
+                                No
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- lump_sum_payment (not_lpsm / lpsm) -->
+
+                    <div class="input-group">
+
+                        <label for="lump_sum_payment">
+                            Lump Sum Payment
+                        </label>
+
+                        <select id="lump_sum_payment">
+
+                            <option value="">
+                                Select an Option
+                            </option>
+
+                            <option value="lpsm">
+                                Yes
+                            </option>
+
+                            <option value="not_lpsm">
+                                No
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- submission_of_application (to_inst / not_inst) -->
+
+                    <div class="input-group">
+
+                        <label for="submission_of_application">
+                            Submission of Application
+                        </label>
+
+                        <select id="submission_of_application">
+
+                            <option value="">
+                                Select an Option
+                            </option>
+
+                            <option value="to_inst">
+                                To Institution
+                            </option>
+
+                            <option value="not_inst">
+                                Not to Institution
+                            </option>
+
+                        </select>
 
                     </div>
 
@@ -692,75 +872,84 @@
                 <div class="form-grid">
 
 
-                    <!-- Property Value -->
+                    <!-- construction_type (sb / mh) -->
 
                     <div class="input-group">
 
-                        <label for="property-value">
-                            Property Value
+                        <label for="construction_type">
+                            Construction Type
                         </label>
 
-                        <input
-                            type="number"
-                            id="property-value"
-                            placeholder="e.g. 120000"
-                            min="0"
-                        >
+                        <select id="construction_type">
+
+                            <option value="">
+                                Select Construction Type
+                            </option>
+
+                            <option value="sb">
+                                Site Built
+                            </option>
+
+                            <option value="mh">
+                                Manufactured Housing
+                            </option>
+
+                        </select>
 
                     </div>
 
 
-                    <!-- Occupancy -->
+                    <!-- occupancy_type (pr / sr / ir) -->
 
                     <div class="input-group">
 
-                        <label for="occupancy-type">
+                        <label for="occupancy_type">
                             Occupancy Type
                         </label>
 
-                        <select id="occupancy-type">
+                        <select id="occupancy_type">
 
                             <option value="">
                                 Select Occupancy
                             </option>
 
-                            <option value="Owner Occupied">
-                                Owner Occupied
+                            <option value="pr">
+                                Primary Residence
                             </option>
 
-                            <option value="Investment">
+                            <option value="sr">
+                                Secondary Residence
+                            </option>
+
+                            <option value="ir">
                                 Investment
                             </option>
 
-                            <option value="Second Home">
-                                Second Home
-                            </option>
-
                         </select>
 
                     </div>
 
 
-                    <!-- Construction -->
+                    <!-- Secured_by (home / land) -->
 
                     <div class="input-group">
 
-                        <label for="construction-type">
-                            Construction Type
+                        <label for="Secured_by">
+                            Secured By
                         </label>
 
-                        <select id="construction-type">
+                        <select id="Secured_by">
 
                             <option value="">
-                                Select Construction
+                                Select an Option
                             </option>
 
-                            <option value="Site Built">
-                                Site Built
+                            <option value="home">
+                                Home
                             </option>
 
-                            <option value="Manufactured">
-                                Manufactured
+                            <option value="land">
+                                Land
                             </option>
 
                         </select>
@@ -768,52 +957,96 @@
                     </div>
 
 
-                    <!-- Total Units -->
+                    <!-- total_units (1U / 2U / 3U / 4U) -->
 
                     <div class="input-group">
 
-                        <label for="total-units">
+                        <label for="total_units">
                             Total Units
                         </label>
 
-                        <input
-                            type="number"
-                            id="total-units"
-                            placeholder="e.g. 1"
-                            min="1"
-                        >
+                        <select id="total_units">
+
+                            <option value="">
+                                Select Total Units
+                            </option>
+
+                            <option value="1U">
+                                1 Unit
+                            </option>
+
+                            <option value="2U">
+                                2 Units
+                            </option>
+
+                            <option value="3U">
+                                3 Units
+                            </option>
+
+                            <option value="4U">
+                                4 Units
+                            </option>
+
+                        </select>
 
                     </div>
 
 
-                    <!-- Region -->
+                    <!-- Security_Type (direct / Indirect) -->
 
                     <div class="input-group">
 
-                        <label for="region">
+                        <label for="Security_Type">
+                            Security Type
+                        </label>
+
+                        <select id="Security_Type">
+
+                            <option value="">
+                                Select Security Type
+                            </option>
+
+                            <option value="direct">
+                                Direct
+                            </option>
+
+                            <option value="Indirect">
+                                Indirect
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Region (south / North / central / North-East) -->
+
+                    <div class="input-group">
+
+                        <label for="Region">
                             Region
                         </label>
 
-                        <select id="region">
+                        <select id="Region">
 
                             <option value="">
                                 Select Region
+                            </option>
+
+                            <option value="North">
+                                North
                             </option>
 
                             <option value="North-East">
                                 North-East
                             </option>
 
-                            <option value="North-West">
-                                North-West
+                            <option value="south">
+                                South
                             </option>
 
-                            <option value="South-East">
-                                South-East
-                            </option>
-
-                            <option value="South-West">
-                                South-West
+                            <option value="central">
+                                Central
                             </option>
 
                         </select>
@@ -916,7 +1149,7 @@
                     <div class="result-detail">
 
                         <span>
-                            Age
+                            Age Group
                         </span>
 
                         <strong id="result-age">
@@ -955,10 +1188,10 @@
                     <div class="result-detail">
 
                         <span>
-                            Interest Rate
+                            Region
                         </span>
 
-                        <strong id="result-interest-rate">
+                        <strong id="result-region">
                             —
                         </strong>
 
@@ -1031,8 +1264,8 @@
                     </h3>
 
                     <p>
-                        Provide applicant, financial,
-                        property, and loan details.
+                        Provide applicant, credit,
+                        and property details.
                     </p>
 
                 </div>

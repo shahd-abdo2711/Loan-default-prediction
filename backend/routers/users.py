@@ -1,7 +1,4 @@
-"""
-User profile routes. All routes here require a valid JWT access token.
-"""
-
+ 
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 

@@ -1,7 +1,3 @@
-"""
-Pydantic schemas for authentication and user profile.
-"""
-
 from pydantic import BaseModel, EmailStr, Field
 
 
